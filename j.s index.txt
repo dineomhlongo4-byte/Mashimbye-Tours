@@ -1,0 +1,155 @@
+<script src="j.s index"></script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // 
+  document.querySelectorAll("[data-accordion-button]").forEach(button => {
+    button.addEventListener("click", () => {
+      const id = button.getAttribute("aria-controls");
+      const panel = id
+        ? document.getElementById(id)
+        : button.nextElementSibling;
+
+      if (!panel) return;
+
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!expanded));
+      panel.hidden = expanded;
+    });
+  });
+
+  //  Tabs functionality
+  document.querySelectorAll("[data-tab-list]").forEach(tabList => {
+    const tabs = tabList.querySelectorAll("[data-tab-target]");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tabTarget;
+        const container = tabList.parentElement;
+
+        tabs.forEach(item => {
+          item.setAttribute("aria-selected", String(item === tab));
+        });
+
+        container.querySelectorAll("[data-tab-panel]").forEach(panel => {
+          panel.hidden = panel.id !== target;
+        });
+      });
+    });
+  });
+
+  //  Modal functionality
+  document.querySelectorAll("[data-modal-open]").forEach(button => {
+    button.addEventListener("click", () => {
+      const modal = document.getElementById(button.dataset.modalOpen);
+      if (modal) modal.hidden = false;
+    });
+  });
+
+  document.querySelectorAll("[data-modal-close]").forEach(button => {
+    button.addEventListener("click", () => {
+      const modal = button.closest("[data-modal]");
+      if (modal) modal.hidden = true;
+    });
+  });
+
+  // Image gallery lightbox
+  let lightbox = document.getElementById("mashibyeLightbox");
+
+  function closeLightbox() {
+    if (lightbox) lightbox.hidden = true;
+  }
+
+  document.querySelectorAll("[data-lightbox]").forEach(image => {
+    image.addEventListener("click", () => {
+      if (!lightbox) {
+        lightbox = document.createElement("div");
+        lightbox.id = "mashibyeLightbox";
+        lightbox.innerHTML = `
+          <button type="button">Close</button>
+          <img alt="">
+        `;
+        document.body.appendChild(lightbox);
+        lightbox.querySelector("button").addEventListener("click", closeLightbox);
+      }
+
+      const enlarged = lightbox.querySelector("img");
+      enlarged.src = image.src;
+      enlarged.alt = image.alt;
+      lightbox.hidden = false;
+    });
+  });
+
+  // Search functionality
+  const search = document.querySelector("#serviceSearch, [data-content-search]");
+  const items = document.querySelectorAll(
+    "[data-search-item], .service-card, .product-card, .event-card"
+  );
+
+  if (search) {
+    search.addEventListener("input", () => {
+      const term = search.value.toLowerCase();
+
+      items.forEach(item => {
+        item.hidden = !item.textContent.toLowerCase().includes(term);
+      });
+    });
+  }
+
+  //  Form validation
+  document.querySelectorAll("form").forEach(form => {
+    form.addEventListener("submit", event => {
+      const name = form.querySelector('[name="name"], [name="fullName"]');
+      const email = form.querySelector('[name="email"]');
+      const phone = form.querySelector('[name="phone"]');
+
+      if (name && !name.value.trim()) {
+        event.preventDefault();
+        alert("Please enter your name.");
+        name.focus();
+        return;
+      }
+
+      if (email && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.value)) {
+        event.preventDefault();
+        alert("Please enter a valid email address.");
+        email.focus();
+        return;
+      }
+
+      if (phone && phone.value.trim() &&
+          !/^[0-9+\\s()-]{7,20}$/.test(phone.value)) {
+        event.preventDefault();
+        alert("Please enter a valid phone number.");
+        phone.focus();
+        return;
+      }
+
+      if (form.id === "enquiryForm") {
+        event.preventDefault();
+        alert("Thank you! Your enquiry has been validated.");
+        form.reset();
+      }
+
+      if (form.id === "contactForm") {
+        event.preventDefault();
+        alert("Your contact form is ready. Configure your organisation's email address to send messages.");
+      }
+    });
+  });
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+      const target = document.querySelector(link.getAttribute("href"));
+
+      if (target) {
+        event.preventDefault();
+        target.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+
+});

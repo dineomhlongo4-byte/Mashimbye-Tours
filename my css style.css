@@ -1,0 +1,295 @@
+home.html{
+   background-image: url("c:\Users\MHLONGO\Desktop\D.MHLONGO WEDE5020\image.jpg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover; 
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+    background-image: url("IMG_7665.jpg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    gap: 15px;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+nav ul li a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1144ec;
+    color: rgb(210, 221, 220);
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #b91d59;
+}
+
+
+body {
+    
+  min-height: 100vh;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+  body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-main);
+  background: var(--bg-main);
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  z-index: -1;
+}
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ==========================================================
+   2. DESIGN TOKENS (CSS VARIABLES)
+   Establishes color scheme, typography scale, and spacing
+   ========================================================== */
+
+:root {
+  --primary-color: #d9f1ef;
+  --primary-hover: #42072c;
+  --secondary-color: #b91d51;
+  --accent-color: #198edd;
+  
+  --bg-main: #ebe1ec;
+  --bg-surface: #461fd4;
+  --text-main: #e4bd11;
+  --text-muted: #cfc20c;
+  --border-color: #cee5e6;
+
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-sm: 0.875rem;   /* ~14px */
+  --font-size-base: 1rem;     /* ~16px */
+  --font-size-lg: 1.25rem;    /* ~20px */
+  --font-size-xl: 1.75rem;    /* ~28px */
+  --font-size-2xl: 2.25rem;   /* ~36px */
+
+  --space-xs: 0.5rem;   /* 8px */
+  --space-sm: 1rem;     /* 16px */
+  --space-md: 1.5rem;   /* 24px */
+  --space-lg: 2rem;     /* 32px */
+  --space-xl: 3rem;     /* 48px */
+
+  --border-radius: 0.5rem;
+  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.2s ease;
+}
+
+
+/* ==========================================================
+   3. TYPOGRAPHY & BASE STYLES
+   ========================================================== */
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--text-main);
+  background-color: var(--bg-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--secondary-color);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--space-xs);
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--font-size-2xl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+
+p {
+  margin-bottom: var(--space-sm);
+  color: var(--text-main);
+}
+
+
+/* ==========================================================
+   4. LAYOUT STRUCTURE (DESKTOP)
+   ========================================================== 
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+  /*
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+/* Multi-Column Grid / Flexbox Structure */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-md) 0;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Multi-column desktop layout */
+  gap: var(--space-lg);
+}
+
+
+/* ==========================================================
+   5. VISUAL STYLING & INTERACTIVE STATES
+   ========================================================== */
+
+/* Cards / Content Containers */
+.card {
+  background-color: var(--bg-surface);
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Interactive Pseudo-Classes (:hover, :focus, :active) */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color var(--transition-fast);
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+
+/* ==========================================================
+   6. RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================== */
+
+/* Tablet Breakpoint (<= 768px) */
+@media (max-width: 768px) {
+  :root {
+    --font-size-2xl: 1.75rem;
+    --font-size-xl: 1.4rem;
+  }
+
+  .grid-layout {
+    grid-template-columns: 1fr; /* Collapse multi-column to single column */
+    gap: var(--space-md);
+  }
+}
+
+/* Mobile Breakpoint (<= 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-xs);
+  }
+
+  .container {
+    width: 95%;
+  }
+}
